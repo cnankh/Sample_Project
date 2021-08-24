@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -59,6 +60,10 @@
         <variable
             name="user"
             type="com.example.paraf_sample.viewmodel.LoginViewModel" />
+
+        <variable
+            name="controller"
+            type="com.example.paraf_sample.viewmodel.LoginController" />
     </data>
 
 </layout>

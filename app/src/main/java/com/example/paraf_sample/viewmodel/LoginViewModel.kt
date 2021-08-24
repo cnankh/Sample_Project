@@ -3,14 +3,16 @@ package com.example.paraf_sample.viewmodel
 import android.annotation.SuppressLint
 import android.app.Application
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.navigation.Navigation
 import com.example.paraf_sample.model.User
 import com.example.paraf_sample.services.login.LoginApiService
-import io.reactivex.Scheduler
+import com.example.paraf_sample.util.SharedPreferencesHelper
+import com.example.paraf_sample.view.fragments.LoginFragmentDirections
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableSingleObserver
@@ -22,7 +24,6 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
 
     @SuppressLint("StaticFieldLeak")
     private val context = getApplication<Application>().applicationContext
-
 
     val user = MutableLiveData<User>()
 
@@ -40,9 +41,9 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
     /**
      * take action when login button is pressed
      */
-    fun onLoginPressed() {
+    fun onLoginPressed(view: View) {
         if (validateInputs()) {
-            createUser()
+            createUser(view)
         }
     }
 
@@ -68,20 +69,22 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
     /**
      * send request to the server to create a user
      */
-    private fun createUser() {
+    private fun createUser(view: View) {
         disposable.add(
             service.createUser()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableSingleObserver<User>() {
-                    override fun onSuccess(t: User) {
-                        Log.d("tag onSuccess", t.toString())
+                    override fun onSuccess(user: User) {
+                        SharedPreferencesHelper.buildHelper(context).setToken(user.token.toString())
+
+                        val action = LoginFragmentDirections.actionLoginFragmentToHomeFragment()
+                        Navigation.findNavController(view).navigate(action)
                     }
 
                     override fun onError(e: Throwable) {
                         Log.d("error", e.message.toString())
                     }
-
                 })
         )
     }
