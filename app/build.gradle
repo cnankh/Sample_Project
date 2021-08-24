@@ -4,6 +4,7 @@ plugins {
 
     id 'kotlin-kapt'
     id "androidx.navigation.safeargs"
+    id "kotlin-android-extensions"
 
 }
 
@@ -65,7 +66,10 @@ dependencies {
     //    custom library
 
     implementation 'com.android.support:multidex:1.0.3'
-
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0-alpha03'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.0-alpha03'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.0-alpha03'
     implementation "com.android.support:design:$supportVersion"
 
     implementation "android.arch.lifecycle:extensions:$lifeCycleExtensionVersion"

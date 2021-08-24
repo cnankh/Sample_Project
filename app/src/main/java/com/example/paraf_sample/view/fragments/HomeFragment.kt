@@ -19,5 +19,5 @@ class HomeFragment : Fragment() {
     ): View? {
         return inflater.inflate(R.layout.home_fragment, container, false)
     }
-    
+
 }
