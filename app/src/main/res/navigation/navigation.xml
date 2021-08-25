@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/listFragment">
+    app:startDestination="@id/splashFragment">
 
     <fragment
         android:id="@+id/homeFragment"
@@ -11,7 +11,7 @@
         android:label="HomeFragment">
         <action
             android:id="@+id/action_homeFragment_to_listFragment"
-            app:destination="@id/listFragment" />
+            app:destination="@id/postFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -22,10 +22,15 @@
             app:destination="@id/homeFragment" />
     </fragment>
     <fragment
-        android:id="@+id/listFragment"
+        android:id="@+id/postFragment"
         android:name="com.example.paraf_sample.view.fragments.PostFragment"
-        android:label="list_fragment"
-        tools:layout="@layout/post_fragment" />
+        android:label="post_fragment"
+        tools:layout="@layout/post_fragment">
+        <action
+            android:id="@+id/action_listFragment_to_postDetailsFragment"
+            app:destination="@id/postDetailsFragment" />
+
+    </fragment>
     <fragment
         android:id="@+id/splashFragment"
         android:name="com.example.paraf_sample.view.fragments.SplashFragment"
@@ -39,5 +44,16 @@
             android:id="@+id/action_splashFragment_to_loginFragment"
             app:destination="@id/loginFragment"
             app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/postDetailsFragment"
+        android:name="com.example.paraf_sample.view.fragments.PostDetailsFragment"
+        android:label="PostDetailsFragment"
+
+        >
+        <argument
+            android:name="postUuid"
+            android:defaultValue="0"
+            app:argType="integer" />
     </fragment>
 </navigation>

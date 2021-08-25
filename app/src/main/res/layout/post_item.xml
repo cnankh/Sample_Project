@@ -10,6 +10,7 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="150dp"
+            android:onClick="@{listener::onPostClicked}"
             android:backgroundTint="#e3e3e3"
             android:elevation="5dp"
             app:cardCornerRadius="30dp"
@@ -31,6 +32,13 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/id_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{String.valueOf(post.uuid)}"
+                android:visibility="gone" />
 
         </androidx.cardview.widget.CardView>
 

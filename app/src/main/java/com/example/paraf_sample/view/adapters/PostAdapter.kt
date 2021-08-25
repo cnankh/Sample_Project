@@ -1,6 +1,7 @@
 package com.example.paraf_sample.view.adapters
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,9 +12,11 @@ import com.example.paraf_sample.R
 import com.example.paraf_sample.databinding.PostItemBinding
 import com.example.paraf_sample.model.Post
 import com.example.paraf_sample.view.OnPostClickController
+import com.example.paraf_sample.view.fragments.PostFragmentDirections
+import kotlinx.android.synthetic.main.post_item.view.*
 
 class PostAdapter(private val postList: ArrayList<Post>) :
-    RecyclerView.Adapter<PostAdapter.PostViewHolder>() ,OnPostClickController{
+    RecyclerView.Adapter<PostAdapter.PostViewHolder>(), OnPostClickController {
 
     @SuppressLint("NotifyDataSetChanged")
     fun updateList(newList: List<Post>) {
@@ -42,12 +45,11 @@ class PostAdapter(private val postList: ArrayList<Post>) :
 
     override fun getItemCount() = postList.size
     override fun onPostClicked(view: View) {
-        TODO("Not yet implemented")
+        val _postId = view.id_container.text.toString()
+        val action = PostFragmentDirections.actionListFragmentToPostDetailsFragment()
+        action.postUuid = _postId.toInt()
+        Navigation.findNavController(view).navigate(action)
+        Log.d("tag id:", _postId)
     }
-//    override fun onDogClicked(v: View) {
-//        val _dogUuid = v.dogUuid_container.text.toString().toInt()
-//        val action = ListFragmentDirections.actionListFragmentToDetailFragment()
-//        action.dogUuid = _dogUuid
-//        Navigation.findNavController(v).navigate(action)
-//    }
+
 }

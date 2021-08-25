@@ -16,7 +16,7 @@ import com.example.paraf_sample.viewmodel.PostViewModel
 import kotlinx.android.synthetic.main.post_fragment.*
 
 class PostFragment : Fragment() {
-    
+
     private lateinit var viewModel: PostViewModel
     private var mAdapter = PostAdapter(arrayListOf())
     private lateinit var mLayoutManager: RecyclerView.LayoutManager

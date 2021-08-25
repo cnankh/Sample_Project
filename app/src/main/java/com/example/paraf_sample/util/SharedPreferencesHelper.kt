@@ -30,14 +30,12 @@ class SharedPreferencesHelper {
     }
 
     fun setToken(token: String) {
-        Log.d("tag set token now" , token)
         prefs?.edit(commit = true) {
             putString("token", token)
         }
     }
 
     fun getToken(): String? {
-        Log.d("tag set token now" , "what the fuck")
         return prefs?.getString("token", null)
     }
 }
