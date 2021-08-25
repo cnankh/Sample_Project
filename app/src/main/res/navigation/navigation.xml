@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/splashFragment">
+    app:startDestination="@id/listFragment">
 
     <fragment
         android:id="@+id/homeFragment"
@@ -23,9 +23,9 @@
     </fragment>
     <fragment
         android:id="@+id/listFragment"
-        android:name="com.example.paraf_sample.view.fragments.ListFragment"
+        android:name="com.example.paraf_sample.view.fragments.PostFragment"
         android:label="list_fragment"
-        tools:layout="@layout/list_fragment" />
+        tools:layout="@layout/post_fragment" />
     <fragment
         android:id="@+id/splashFragment"
         android:name="com.example.paraf_sample.view.fragments.SplashFragment"
